@@ -1,4 +1,4 @@
-package consecutive_test
+package breaker_test
 
 import (
 	breaker "."
@@ -7,7 +7,7 @@ import (
 )
 
 // RemoteService is a fictitious interface to an encapsulation of some
-// unreliable subsystem that it outside of our domain of control.  It should
+// unreliable subsystem that is outside of our domain of control.  It should
 // be treated for this example as merely a recording of behavior.
 type RemoteService struct {
 	// The subsystem's circuit breaker.
@@ -33,7 +33,7 @@ func (s *RemoteService) ConductRequest() {
 	}
 
 	// Emulate the actual remote interface here that is supposedly unreliable.
-	err := s.contactRemoteSystem()
+	err := s.performRequest()
 	// WARNING: We make an implicit assumption that any err value is retryable
 	// and not a permanent error.
 	if err != nil {
